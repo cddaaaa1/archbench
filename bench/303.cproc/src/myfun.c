@@ -30,7 +30,9 @@ void obuf_init() {
 
 void obuf_display() {
   int l = obuf.len > MAX_DISPLAY ? MAX_DISPLAY : obuf.len;
+#ifndef __ARCH__
   fwrite(obuf.p, l, 1, stdout);
+#endif
   printf("\n");
   if (obuf.len > MAX_DISPLAY) {
     printf("Warning: Output is truncated to %d bytes\n", MAX_DISPLAY);

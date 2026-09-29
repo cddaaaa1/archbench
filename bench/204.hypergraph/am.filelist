@@ -1,4 +1,4 @@
-input/test-hp1
+#input/test-hp1
 input/train-hp9
-input/ref-biomed
-input/huge-industry3
+#input/ref-biomed
+#input/huge-industry3

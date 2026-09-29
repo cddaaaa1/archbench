@@ -8,7 +8,10 @@ echo "Running using $nproc threads..."
 
 cd ..
 
-source scripts/benchlist/all.sh  # set benchlist
+# 允许用 benchlist=... 覆盖默认集合, 方便只跑在裸机 AM 上能构建的程序
+if [ -z "${benchlist:-}" ]; then
+  source scripts/benchlist/all.sh  # set benchlist
+fi
 
 mkdir -p result
 logfile=result/compile.log

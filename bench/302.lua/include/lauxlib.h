@@ -183,12 +183,21 @@ LUALIB_API void(luaL_openlib)(lua_State *L, const char *libname, const luaL_Reg 
 
 /* print a string */
 #if !defined(lua_writestring)
+#ifndef __ISA_NATIVE__
+/* 裸机 AM: klib 的 FILE 接口不支持 stdout, 重定向到串口 */
+#define lua_writestring(s, l) printf("%.*s", (int)(l), (s))
+#else
 #define lua_writestring(s, l) fwrite((s), sizeof(char), (l), stdout)
+#endif
 #endif
 
 /* print a newline and flush the output */
 #if !defined(lua_writeline)
+#ifndef __ISA_NATIVE__
+#define lua_writeline() printf("\n")
+#else
 #define lua_writeline() (lua_writestring("\n", 1), fflush(stdout))
+#endif
 #endif
 
 /* print an error message */

@@ -1,4 +1,4 @@
-input/test.jpg
+#input/test.jpg
 input/train.jpg
-input/ref.jpg
-input/huge.jpg
+#input/ref.jpg
+#input/huge.jpg

@@ -24,6 +24,9 @@ endif
 LINKAGE += $(LIBBENCH_A)
 include $(MK)
 
+# 部分 bench 用 %ld/%lx 打印 int: 在 ILP32 上名义类型不符, 会被 AM 的 -Werror 拦下
+CFLAGS += -Wno-error=format
+
 ifneq ($(MAKECMDGOALS),archive)
 $(LIBBENCH_A): force
 	@$(MAKE) -s -C $(LIBBENCH_PATH) archive
